@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "90990103447",
+    "project_id": "musiconnect-94f37",
+    "storage_bucket": "musiconnect-94f37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90990103447:android:a6b176f76f83998b6652d2",
+        "android_client_info": {
+          "package_name": "com.example.debug_it"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH6KIDGXzIxV3lt8SxTJ4Jr1EOMtTLdnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
