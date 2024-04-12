@@ -2,6 +2,7 @@ import 'package:debug_it/features/user_auth/presentation/pages/delete.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/home_page.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/login_page.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/signup_page.dart';
+import 'package:debug_it/features/user_auth/presentation/pages/welcome_screen.dart';
 
 
 import 'package:flutter/material.dart';
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/home': (context) => HomePage(),
         '/delete': (context) => DeleteAccount(),
-        '/': (context) => SignUpPage(), // Default route is SignUpPage
+        '/signup': (context) => SignUpPage(),
+        '/': (context) => WelcomeScreen(), // Default route is SignUpPage
       },
     );
   }

@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
 
       if (user == null) {
         setState(() {
-          _errorMessage = "User ID does not exist.";
+          _errorMessage = "Incorrect credentials. Please try again.";
         });
       } else {
         print("User signed in successfully");

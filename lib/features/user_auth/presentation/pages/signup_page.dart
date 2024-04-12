@@ -32,12 +32,9 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text(
-          "Sign Up",
-          style: TextStyle(color: Colors.white),
-        ),
+        toolbarHeight: 30,
       ),
-      backgroundColor: Colors.grey.shade600,
+      backgroundColor: Colors.grey.shade900,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
@@ -45,7 +42,9 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
             Text(
               "Sign Up",
-              style: TextStyle(fontSize: 50),
+              style: TextStyle(fontSize: 50, color: Colors.white),
+
+
             ),
             FormContainerWidget(
               controller: _usernameController,
