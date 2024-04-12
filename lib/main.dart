@@ -1,3 +1,4 @@
+import 'package:debug_it/features/user_auth/presentation/pages/api_music.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/delete.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/home_page.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/login_page.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/', // Initial route is SignUpPage
       routes: {
         '/login': (context) => LoginPage(),
-        '/home': (context) => HomePage(),
+        '/local': (context) => HomePage(),
+        '/home': (context) => apiPage(),
         '/delete': (context) => DeleteAccount(),
         '/signup': (context) => SignUpPage(),
         '/': (context) => WelcomeScreen(), // Default route is SignUpPage
