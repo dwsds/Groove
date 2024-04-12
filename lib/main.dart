@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/local': (context) => HomePage(),
-        '/home': (context) => apiPage(),
+        '/home': (context) => SpotifyApp(),
         '/delete': (context) => DeleteAccount(),
         '/signup': (context) => SignUpPage(),
         '/': (context) => WelcomeScreen(), // Default route is SignUpPage

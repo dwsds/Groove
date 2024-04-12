@@ -1,93 +1,119 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:debug_it/features/user_auth/services/ApiService.dart';
-import 'package:debug_it/features/user_auth/models/MusicDataResponse.dart';
-import 'MusicDetailPage.dart';
+import 'package:debug_it/features/user_auth/models/music.dart';
+import 'package:debug_it/features/user_auth/presentation/pages/home.dart';
+import 'package:debug_it/features/user_auth/presentation/pages/search.dart';
+import 'package:debug_it/features/user_auth/presentation/pages/yourlibrary.dart';
 
-class apiPage extends StatefulWidget {
-  const apiPage({Key? key}) : super(key: key);
+class SpotifyApp extends StatefulWidget {
+  const SpotifyApp({Key? key}) : super(key: key);
 
   @override
-  State<apiPage> createState() => _HomePageState();
+  _SpotifyAppState createState() => _SpotifyAppState();
 }
 
-class _HomePageState extends State<apiPage> {
-  List<MusicDataResponse> musicList = [];
+class _SpotifyAppState extends State<SpotifyApp> {
+  AudioPlayer _audioPlayer = AudioPlayer();
+  var tabs = [
+    Home((music, {stop = false}) {
+      // Your mini player logic here
+    }),
+    Search(),
+    YourLibrary()
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    fetchMusicData();
+  int currentTabIndex = 0;
+  bool isPlaying = false;
+  Music? music;
+
+  Widget miniPlayer(Music? music, {bool stop = false}) {
+    this.music = music;
+
+    if (music == null) {
+      return SizedBox();
+    }
+
+    if (stop) {
+      isPlaying = false;
+      _audioPlayer.stop();
+    }
+
+    setState(() {});
+
+    Size deviceSize = MediaQuery.of(context).size;
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 500),
+      color: Colors.blueGrey,
+      width: deviceSize.width,
+      height: 50,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.network(music.image, fit: BoxFit.cover),
+          Text(
+            music.name,
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          IconButton(
+            onPressed: () async {
+              isPlaying = !isPlaying;
+
+              if (isPlaying) {
+                await _audioPlayer.play(music.audioURL as Source);
+              } else {
+                await _audioPlayer.pause();
+              }
+
+              setState(() {});
+            },
+            icon: isPlaying
+                ? Icon(Icons.pause, color: Colors.white)
+                : Icon(Icons.play_arrow, color: Colors.white),
+          )
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    print("Let's Build it");
+
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Music App"),
-        ),
-        body: customListCard());
-  }
-
-  Future<void> fetchMusicData() async {
-    final musiclist = await ApiService().getAllFetchMusicData();
-    setState(() {
-      musicList = musiclist;
-    });
-  }
-
-  Widget customListCard() {
-    return ListView.builder(
-      padding: EdgeInsets.zero,
-      itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      MusicDetailPage(response: musicList[index]),
-                ));
-          },
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 8, bottom: 8, right: 8, top: 4),
-                  child: SizedBox(
-                    child: FadeInImage.assetNetwork(
-                        height: 60,
-                        width: 60,
-                        placeholder: "lib/assets/images/musicplaceholder.png",
-                        image: musicList[index].image.toString(),
-                        fit: BoxFit.fill),
-                  ),
-                ),
+      body: tabs[currentTabIndex],
+      backgroundColor: Colors.black,
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          miniPlayer(music),
+          BottomNavigationBar(
+            currentIndex: currentTabIndex,
+            onTap: (currentIndex) {
+              print("Current Index is $currentIndex");
+              currentTabIndex = currentIndex;
+              setState(() {}); // re-render
+            },
+            selectedLabelStyle: TextStyle(color: Colors.white),
+            selectedItemColor: Colors.white,
+            backgroundColor: Colors.black45,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home, color: Colors.white),
+                label: 'Home',
               ),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      musicList[index].title.toString(),
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      musicList[index].artist.toString(),
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
-                    ),
-                  ],
-                ),
-              )
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search, color: Colors.white),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.library_books, color: Colors.white),
+                label: 'Your Library',
+              ),
             ],
-          ),
-        );
-      },
-      itemCount: musicList.length,
+          )
+        ],
+      ),
     );
   }
 }
