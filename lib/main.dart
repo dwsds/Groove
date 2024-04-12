@@ -1,10 +1,10 @@
 import 'package:debug_it/features/user_auth/presentation/pages/api_music.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/delete.dart';
-import 'package:debug_it/features/user_auth/presentation/pages/home_page.dart';
+import 'package:debug_it/features/user_auth/presentation/pages/local_music.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/login_page.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/signup_page.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/welcome_screen.dart';
-
+import 'package:audioplayers/audioplayers.dart';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/local': (context) => HomePage(),
-        '/home': (context) => SpotifyApp(),
+        '/home': (context) => ApiPage(),
+        // '/home': (context) => InitPage(),
         '/delete': (context) => DeleteAccount(),
         '/signup': (context) => SignUpPage(),
         '/': (context) => WelcomeScreen(), // Default route is SignUpPage
@@ -40,3 +41,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
