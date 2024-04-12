@@ -130,7 +130,7 @@ class _ApiPageState extends State<ApiPage> {
                     child: FadeInImage.assetNetwork(
                       height: 60,
                       width: 60,
-                      placeholder: "lib/assets/images/musicplaceholder.png",
+                      placeholder: "assets/music_icon.jpg",
                       image: musicList[index].image.toString(),
                       fit: BoxFit.fill,
                     ),
