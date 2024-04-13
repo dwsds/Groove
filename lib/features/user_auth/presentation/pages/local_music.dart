@@ -7,8 +7,8 @@ import 'package:debug_it/features/user_auth/controllers/player_controller.dart';
 // import 'package:sizer/sizer.dart';
 import 'package:debug_it/features/user_auth/controllers/duration_extension.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class LocalMusic extends StatelessWidget {
+  LocalMusic({Key? key}) : super(key: key);
   final PlayerController playerController = Get.put(PlayerController());
 
   @override

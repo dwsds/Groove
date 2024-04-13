@@ -6,6 +6,7 @@ import 'package:debug_it/features/user_auth/presentation/pages/selectPlaylist.da
 import 'package:debug_it/features/user_auth/presentation/pages/signup_page.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/welcome_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:debug_it/features/user_auth/presentation/pages/yourlibrary.dart';
 import 'package:debug_it/features/user_auth/presentation/widgets/inherited_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -34,9 +35,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/', // Initial route is SignUpPage
       routes: {
         '/login': (context) => LoginPage(),
-        '/local': (context) => HomePage(),
-        '/home': (context) => ApiPage(user: ModalRoute.of(context)!.settings.arguments as User),
-
+        '/local': (context) => LocalMusic(),
+        // '/home': (context) => HomePage(),
+        '/api_music': (context) => ApiPage(user: ModalRoute.of(context)!.settings.arguments as User),
+        '/library': (context) => YourLibrary(user: ModalRoute.of(context)!.settings.arguments as User),
         '/delete': (context) => DeleteAccount(),
         '/signup': (context) => SignUpPage(),
         '/': (context) => WelcomeScreen(), // Default route is SignUpPage

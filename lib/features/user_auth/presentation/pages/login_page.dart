@@ -1,4 +1,5 @@
 import 'package:debug_it/features/user_auth/presentation/pages/api_music.dart';
+import 'package:debug_it/features/user_auth/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'local_music.dart';
@@ -116,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ApiPage(user: user),
+            builder: (context) => HomePage(user: user),
           ),
         );
       }

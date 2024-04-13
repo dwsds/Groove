@@ -1,4 +1,5 @@
 import 'package:debug_it/features/user_auth/presentation/pages/api_music.dart';
+import 'package:debug_it/features/user_auth/presentation/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../firebase_auth_implementation/firebase_auth_services.dart';
@@ -137,7 +138,7 @@ class _SignUpPageState extends State<SignUpPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ApiPage(user: user),
+            builder: (context) => HomePage(user: user),
           ),
         );
       }
