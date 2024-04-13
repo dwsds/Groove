@@ -130,97 +130,100 @@ class _ApiPageState extends State<ApiPage> {
 
   Widget customListCard() {
 
-      print('Building customListCard... Music list length: ${musicList.length}');
-      // Your existing code for building the list view
+    print('Building customListCard... Music list length: ${musicList.length}');
+    // Your existing code for building the list view
 
 
-      return Builder(
-        builder: (BuildContext context) {
-          return ListView.builder(
-            padding: EdgeInsets.zero,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  print('Song tapped: ${musicList[index].title}');
-                  setState(() {
-                    currentSong = musicList[index];
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MusicDetailPage(response: musicList[index]),
-                    ),
-                  );
-                },
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8, bottom: 8, right: 8, top: 4),
-                        child: SizedBox(
-                          child: FadeInImage.assetNetwork(
-                            height: 60,
-                            width: 60,
-                            placeholder: "assets/music_icon.jpg",
-                            image: musicList[index].image.toString(),
-                            fit: BoxFit.fill,
-                          ),
+    return Builder(
+      builder: (BuildContext context) {
+        return ListView.builder(
+          padding: EdgeInsets.zero,
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                print('Song tapped: ${musicList[index].title}');
+                setState(() {
+                  currentSong = musicList[index];
+                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MusicDetailPage(response: musicList[index]),
+                  ),
+                );
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8, bottom: 8, right: 8, top: 4),
+                      child: SizedBox(
+                        child: FadeInImage.assetNetwork(
+                          height: 60,
+                          width: 60,
+                          placeholder: "assets/music_icon.jpg",
+                          image: musicList[index].image.toString(),
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
+                  ),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded( // Wrap Text widget with Expanded
+                              child: Text(
                                 musicList[index].title.toString(),
                                 style: TextStyle(color: Colors.black, fontSize: 18),
+                                overflow: TextOverflow.ellipsis, // Set overflow property to ellipsis
                               ),
-                              PopupMenuButton(
-                                itemBuilder: (BuildContext context) => [
-                                  PopupMenuItem(
-                                    child: Text("Add to Playlist"),
-                                    value: musicList[index], // Pass the current song object as the value
-                                  ),
-                                ],
-                                onSelected: (value) {
-                                  if (value is MusicDataResponse && widget.user != null && widget.user.uid != null) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => CreateNewPlaylistPage(
-                                          userID: widget.user.uid!,
-                                          currentSong: value,
-                                        ),
+                            ),
+                            PopupMenuButton(
+                              itemBuilder: (BuildContext context) => [
+                                PopupMenuItem(
+                                  child: Text("Add to Playlist"),
+                                  value: musicList[index], // Pass the current song object as the value
+                                ),
+                              ],
+                              onSelected: (value) {
+                                if (value is MusicDataResponse && widget.user != null && widget.user.uid != null) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CreateNewPlaylistPage(
+                                        userID: widget.user.uid!,
+                                        currentSong: value,
                                       ),
-                                    );
-                                  }
-                                },
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            musicList[index].artist.toString(),
-                            style: TextStyle(color: Colors.grey, fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-            itemCount: musicList.length,
-          );
-        },
-      );
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          musicList[index].artist.toString(),
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+          itemCount: musicList.length,
+        );
+      },
+    );
 
 
   }

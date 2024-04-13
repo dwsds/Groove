@@ -1,3 +1,6 @@
+import 'package:debug_it/features/user_auth/models/MusicDataResponse.dart';
+import 'package:debug_it/features/user_auth/presentation/pages/MusicDetailPage.dart';
+import 'package:debug_it/features/user_auth/services/ApiService.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -37,10 +40,15 @@ class PlaylistDetailsPage extends StatelessWidget {
           }
 
           List<String> songNames = [];
+          List<String> songIds = [];
+
           snapshot.data!.docs.forEach((doc) {
             final data = doc.data() as Map<String, dynamic>;
             if (data.containsKey('songTitle')) {
               songNames.add(data['songTitle']);
+            }
+            if (data.containsKey('id')) {
+              songIds.add(data['id']);
             }
           });
 
@@ -52,10 +60,46 @@ class PlaylistDetailsPage extends StatelessWidget {
                   songNames[index],
                   style: TextStyle(color: Colors.black),
                 ),
-                // Add onTap action if needed
+                onTap: () async {
+                  if (index >= 0 && index < songIds.length) {
+                    try {
+                      // Fetch the song details by ID
+                      MusicDataResponse? song = await ApiService().getSongById(songIds[index]);
+                      if (song != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MusicDetailPage(response: song),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Song details not found.'),
+                          ),
+                        );
+                      }
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Error fetching song details: $e'),
+                        ),
+                      );
+                    }
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Invalid song index.'),
+                      ),
+                    );
+                  }
+                },
               );
             },
           );
+
+
+
         },
       ),
     );
