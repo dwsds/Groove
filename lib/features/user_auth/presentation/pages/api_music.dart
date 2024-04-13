@@ -17,6 +17,7 @@ class ApiPage extends StatefulWidget {
 
 class _ApiPageState extends State<ApiPage> {
   List<MusicDataResponse> musicList = [];
+  int _selectedIndex = 0;
   late MusicDataResponse currentSong = MusicDataResponse(
     id: '',
     title: '',
@@ -77,6 +78,7 @@ class _ApiPageState extends State<ApiPage> {
             if (currentSong != null) _buildBottomBar(),
           ],
         ),
+
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
