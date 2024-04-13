@@ -44,27 +44,38 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
             Text(
               "Sign Up",
-              style: TextStyle(fontSize: 50, color: Colors.white),
+              style: TextStyle(fontSize: 30, color: Colors.grey.shade200,),
 
 
             ),
-            FormContainerWidget(
-              controller: _usernameController,
-              hintText: "Username",
-              isPasswordField: false,
+            SizedBox(height: 15),
+            Container(
+              height: 50, // Decrease the height of the container to make the text fields smaller
+              child: FormContainerWidget(
+                controller: _usernameController,
+                hintText: "Username",
+                isPasswordField: false,
+              ),
             ),
-            SizedBox(height: 10,),
-            FormContainerWidget(
-              controller: _emailController,
-              hintText: "Email",
-              isPasswordField: false,
+            SizedBox(height: 15), // Add some spacing between text fields
+            Container(
+              height: 50, // Decrease the height of the container to make the text fields smaller
+              child: FormContainerWidget(
+                controller: _emailController,
+                hintText: "Email",
+                isPasswordField: false,
+              ),
             ),
-            SizedBox(height: 10,),
-            FormContainerWidget(
-              controller: _passwordController,
-              hintText: "Password",
-              isPasswordField: true,
+            SizedBox(height: 15), // Add some spacing between text fields
+            Container(
+              height: 50, // Decrease the height of the container to make the text fields smaller
+              child: FormContainerWidget(
+                controller: _passwordController,
+                hintText: "Password",
+                isPasswordField: true,
+              ),
             ),
+
             SizedBox(height: 20,),
             Center(
               child: GestureDetector(
@@ -94,13 +105,13 @@ class _SignUpPageState extends State<SignUpPage> {
                 style: TextStyle(color: Colors.black),
               ),
 
-            SizedBox(height: 20,),
+            SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   "Already have an account?",
-                  style: TextStyle(fontSize: 18,),
+                  style: TextStyle(fontSize: 15,color: Color(0xFF58AFE5)),
                 ),
                 SizedBox(width: 5,),
                 GestureDetector(

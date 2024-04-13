@@ -61,17 +61,24 @@ class _ApiPageState extends State<ApiPage> {
           children: [
             Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: EdgeInsets.symmetric(horizontal: 31, vertical: 6),
               child: InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, "/local");
                 },
-                child: Text(
-                  "Local Music",
-                  style: TextStyle(color: Colors.blue, fontSize: 16),
+                child: Row(
+                  children: [
+                    Icon(Icons.folder, color: Colors.blue), // Folder icon
+                    SizedBox(width: 8), // Spacer between icon and text
+                    Text(
+                      "Local Music",
+                      style: TextStyle(color: Colors.blue, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
             ),
+
             Expanded(
               child: customListCard(),
             ),

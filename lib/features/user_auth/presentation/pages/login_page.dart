@@ -30,9 +30,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Login", style: TextStyle(color: Colors.white),),
+        toolbarHeight: 30,
       ),
       backgroundColor: Colors.grey.shade600,
 
