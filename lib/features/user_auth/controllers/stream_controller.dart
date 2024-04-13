@@ -60,6 +60,7 @@ class StreamController extends GetxController {
                 title: metadata.trackName,
                 long: metadata.trackDuration.toString(),
               ),
+
             );
           }
         }

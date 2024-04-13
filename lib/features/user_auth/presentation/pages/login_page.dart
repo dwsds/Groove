@@ -1,3 +1,4 @@
+import 'package:debug_it/features/user_auth/presentation/pages/api_music.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'local_music.dart';
@@ -98,7 +99,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
   void _signIn() async {
     String email = _emailController.text;
     String password = _passwordController.text;
@@ -112,7 +112,13 @@ class _LoginPageState extends State<LoginPage> {
         });
       } else {
         print("User signed in successfully");
-        Navigator.pushNamed(context, "/home");
+        // Navigate to the ApiPage with userID parameter
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ApiPage(user: user),
+          ),
+        );
       }
     } catch (error) {
       setState(() {

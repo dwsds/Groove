@@ -1,3 +1,4 @@
+import 'package:debug_it/features/user_auth/presentation/pages/api_music.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../firebase_auth_implementation/firebase_auth_services.dart';
@@ -132,7 +133,13 @@ class _SignUpPageState extends State<SignUpPage> {
         });
       } else {
         print("User created successfully");
-        Navigator.pushNamed(context, "/home");
+        // Navigate to the ApiPage with userID parameter
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ApiPage(user: user),
+          ),
+        );
       }
     } catch (error) {
       setState(() {
@@ -146,6 +153,7 @@ class _SignUpPageState extends State<SignUpPage> {
       print("An error occurred: $error");
     }
   }
+
 
   // Map Firebase error codes to user-friendly messages
   String _mapFirebaseErrorToMessage(String errorCode) {
