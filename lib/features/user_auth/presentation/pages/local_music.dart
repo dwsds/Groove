@@ -1,10 +1,7 @@
-
-import 'dart:typed_data';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:debug_it/features/user_auth/controllers/player_controller.dart';
-// import 'package:sizer/sizer.dart';
 import 'package:debug_it/features/user_auth/controllers/duration_extension.dart';
 
 class LocalMusic extends StatelessWidget {
@@ -82,11 +79,7 @@ class LocalMusic extends StatelessWidget {
                                               fit: BoxFit.fill,
                                             ),
                                           ),
-
-
                                       ),
-
-
                                   ),
                                   Expanded(
                                     child: Column(

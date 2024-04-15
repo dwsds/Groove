@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:debug_it/features/user_auth/presentation/pages/playlistsdetails.dart';
 import 'package:flutter/material.dart';
-import 'package:debug_it/features/user_auth/presentation/widgets/inherited_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:debug_it/features/user_auth/models/MusicDataResponse.dart';
 
 class CreateNewPlaylistPage extends StatelessWidget {
@@ -28,7 +25,6 @@ class CreateNewPlaylistPage extends StatelessWidget {
         children: [
           ElevatedButton(
             onPressed: () {
-              // Show dialog to get playlist name
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -36,14 +32,12 @@ class CreateNewPlaylistPage extends StatelessWidget {
                     title: Text('Enter Playlist Name'),
                     content: TextField(
                       onChanged: (value) {
-                        // Store the entered playlist name
                         playlistName = value;
                       },
                     ),
                     actions: [
                       TextButton(
                         onPressed: () {
-                          // Call _createNewPlaylist with the entered playlist name
                           _createNewPlaylist(context, playlistName!);
                           Navigator.of(context).pop(); // Close the dialog
                         },
@@ -56,12 +50,12 @@ class CreateNewPlaylistPage extends StatelessWidget {
             },
             child: Text('Create New Playlist'),
           ),
-          SizedBox(height: 20), // Add spacing between the button and text
+          SizedBox(height: 20),
           Text(
             'Add to already existing playlist',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 10), // Add spacing before the playlist content
+          SizedBox(height: 10),
           Expanded(
             child: FutureBuilder<QuerySnapshot>(
               future: FirebaseFirestore.instance.collection(userID).get(),
@@ -85,8 +79,6 @@ class CreateNewPlaylistPage extends StatelessWidget {
                     playlistNames.add(data['PlaylistName']);
                   }
                 });
-                print('Playlist IDs: $playlistNames');
-
                 return ListView.builder(
                   itemCount: playlistNames.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -104,13 +96,6 @@ class CreateNewPlaylistPage extends StatelessWidget {
                 );
               },
             ),
-
-
-
-
-
-
-
           ),
         ],
       ),

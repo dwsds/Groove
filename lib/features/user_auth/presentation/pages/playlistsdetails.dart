@@ -53,7 +53,7 @@ class PlaylistDetailsPage extends StatelessWidget {
               songIds.add(data['id']);
             }
           });
-  SizedBox(height: 20,);
+          SizedBox(height: 20,);
           return ListView.builder(
             itemCount: songNames.length,
             itemBuilder: (BuildContext context, int index) {
@@ -65,7 +65,6 @@ class PlaylistDetailsPage extends StatelessWidget {
                 onTap: () async {
                   if (index >= 0 && index < songIds.length) {
                     try {
-                      // Fetch the song details by ID
                       MusicDataResponse? song = await ApiService().getSongById(songIds[index]);
                       if (song != null) {
                         Navigator.push(
@@ -99,9 +98,6 @@ class PlaylistDetailsPage extends StatelessWidget {
               );
             },
           );
-
-
-
         },
       ),
     );

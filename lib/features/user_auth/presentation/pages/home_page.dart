@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'api_music.dart'; // Import your Explore page
-import 'yourlibrary.dart'; // Import your Libraries page
+import 'api_music.dart';
+import 'yourlibrary.dart';
 
 class HomePage extends StatefulWidget {
   final User user;
@@ -19,8 +19,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _tabs = [
-      ApiPage(user: widget.user,), // Your Explore page
-      YourLibrary(user: widget.user,), // Your Libraries page
+      ApiPage(user: widget.user,),
+      YourLibrary(user: widget.user,),
     ];
   }
 
@@ -28,9 +28,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade600,
-      // appBar: AppBar(
-      //   title: Text('Home'),
-      // ),
       body: _tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey.shade900,

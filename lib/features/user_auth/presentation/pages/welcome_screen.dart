@@ -37,7 +37,7 @@ class WelcomeScreen extends StatelessWidget {
               },
               blendMode: BlendMode.dstOut,
               child: Image.asset(
-                'assets/welcome.jpg', // Path to your upper image asset
+                'assets/welcome.jpg',
                 fit: BoxFit.cover,
               ),
             ),
@@ -84,7 +84,6 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              // Add some spacing between the button/link and the bottom edge
             ],
           ),
         ],

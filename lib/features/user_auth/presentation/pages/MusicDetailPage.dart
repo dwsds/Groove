@@ -27,14 +27,12 @@ class _MusicDetailPageState extends State<MusicDetailPage> {
       });
     });
 
-    // listen to audio duration
     audioPlayer.onDurationChanged.listen((newDuration) {
       setState(() {
         duration = newDuration;
       });
     });
 
-    // listen to audio position
     audioPlayer.onPositionChanged.listen((newPosition) {
       position = newPosition;
     });
@@ -86,7 +84,6 @@ class _MusicDetailPageState extends State<MusicDetailPage> {
                 onChanged: (value) async {
                   final position = Duration(seconds: value.toInt());
                   await audioPlayer.seek(position);
-                  // optional :Play audio if was paused
                   await audioPlayer.resume();
                 }),
             Padding(
@@ -119,7 +116,6 @@ class _MusicDetailPageState extends State<MusicDetailPage> {
     );
   }
   Future<void> setAudio()async  {
-    // Repeat song when completed
     audioPlayer.setReleaseMode(ReleaseMode.loop);
     await audioPlayer.setSourceUrl(widget.response.source.toString());
   }

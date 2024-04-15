@@ -1,8 +1,6 @@
-import 'package:debug_it/features/user_auth/presentation/pages/api_music.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'local_music.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/signup_page.dart';
 import 'package:debug_it/features/user_auth/presentation/widgets/form_container_widget.dart';
 
@@ -48,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.orangeAccent,
                   size: 20,
                 ),
-                SizedBox(width: 10), // Add some space between the icon and text
+                SizedBox(width: 10),
                 Text(
                   "Log In ",
                   style: TextStyle(
@@ -61,24 +59,22 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 10,),
             Container(
-              height: 50, // Decrease the height of the container to make the text fields smaller
+              height: 50,
               child: FormContainerWidget(
                 controller: _emailController,
                 hintText: "Email",
                 isPasswordField: false,
-                textStyle: TextStyle(color: Colors.white, fontFamily: 'text'), // Add textStyle for the email field
+                textStyle: TextStyle(color: Colors.white, fontFamily: 'text'),
               ),
             ),
-
-            SizedBox(height: 15), // Add some spacing between text fields
-
+            SizedBox(height: 15),
             Container(
-              height: 50, // Decrease the height of the container to make the text fields smaller
+              height: 50,
               child: FormContainerWidget(
                 controller: _passwordController,
                 hintText: "Password",
                 isPasswordField: true,
-                textStyle: TextStyle(color: Colors.white, fontFamily: 'text'), // Add textStyle for the password field
+                textStyle: TextStyle(color: Colors.white, fontFamily: 'text'),
               ),
             ),
 
@@ -104,9 +100,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             SizedBox(height: 20,),
-
-
-            // Display error message if it's not empty
             if (_errorMessage.isNotEmpty)
               Text(
                 _errorMessage,
@@ -141,8 +134,6 @@ class _LoginPageState extends State<LoginPage> {
           _errorMessage = "Incorrect credentials. Please try again.";
         });
       } else {
-        print("User signed in successfully");
-        // Navigate to the ApiPage with userID parameter
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -152,7 +143,6 @@ class _LoginPageState extends State<LoginPage> {
       }
     } catch (error) {
       setState(() {
-        // Display specific error messages to the user
         if (error is FirebaseAuthException) {
           if (error.code == "user-not-found") {
             _errorMessage = "User with this email does not exist.";
@@ -163,19 +153,14 @@ class _LoginPageState extends State<LoginPage> {
           _errorMessage = "An error occurred: $error";
         }
       });
-      print("An error occurred: $error");
     }
   }
-
-
-  // Map Firebase error codes to user-friendly messages
   String _mapFirebaseErrorToMessage(String errorCode) {
     switch (errorCode) {
       case "user-not-found":
         return "Email does not exist in the database. Please check your email.";
       case "wrong-password":
         return "Wrong password. Please try again.";
-    // Add more cases for other Firebase error codes as needed
       default:
         return "An error occurred: $errorCode";
     }

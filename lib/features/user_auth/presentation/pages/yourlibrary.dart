@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/playlistsdetails.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:debug_it/features/user_auth/models/MusicDataResponse.dart';
 
 class YourLibrary extends StatelessWidget {
   final User user;
@@ -15,9 +14,7 @@ class YourLibrary extends StatelessWidget {
       backgroundColor: Colors.grey.shade900,
       body: Column(
         children: [
-          SizedBox(height: 50), // Add spacing between the button and text
-
-          SizedBox(height: 10),
+          SizedBox(height: 60),
           Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.symmetric(horizontal: 31, vertical: 6),
@@ -27,8 +24,8 @@ class YourLibrary extends StatelessWidget {
               },
               child: Row(
                 children: [
-                  Icon(Icons.folder, color: Colors.blue), // Folder icon
-                  SizedBox(width: 8), // Spacer between icon and text
+                  Icon(Icons.folder, color: Colors.blue),
+                  SizedBox(width: 8),
                   Text(
                     "Your Local Music",
                     style: TextStyle(color: Colors.blue, fontSize: 20),
@@ -41,10 +38,9 @@ class YourLibrary extends StatelessWidget {
           Text(
             'Your Playlists',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.white),
-          ),// Add spacing before the playlist content
+          ),
           Expanded(
             child: FutureBuilder<QuerySnapshot>(
-
               future: FirebaseFirestore.instance.collection(user.uid).get(),
               builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 final UserId = user.uid;
@@ -67,8 +63,6 @@ class YourLibrary extends StatelessWidget {
                     playlistNames.add(data['PlaylistName']);
                   }
                 });
-                print('Playlist IDs: $playlistNames');
-
                 return ListView.builder(
                   itemCount: playlistNames.length,
                   itemBuilder: (BuildContext context, int index) {

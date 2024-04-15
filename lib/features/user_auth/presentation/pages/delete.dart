@@ -23,7 +23,7 @@ class FirebaseController extends GetxController {
       try {
         await user.reauthenticateWithCredential(credential);
         await user.delete();
-        onDeleted?.call(); // Call the callback function if provided
+        onDeleted?.call();
         Get.offAll(LoginPage());
         Get.snackbar("Success", "User Account deleted successfully",
             backgroundColor: Colors.green);

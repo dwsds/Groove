@@ -17,7 +17,6 @@ class ApiPage extends StatefulWidget {
 
 class _ApiPageState extends State<ApiPage> {
   List<MusicDataResponse> musicList = [];
-  int _selectedIndex = 0;
   late MusicDataResponse currentSong = MusicDataResponse(
     id: '',
     title: '',
@@ -32,7 +31,7 @@ class _ApiPageState extends State<ApiPage> {
     site: '',
   );
 
-  bool isPlaying = false; // Initialize isPlaying
+  bool isPlaying = false;
   @override
   void initState() {
     super.initState();
@@ -40,10 +39,9 @@ class _ApiPageState extends State<ApiPage> {
   }
   @override
   Widget build(BuildContext context) {
-    print('Building ApiPage...');
     return MusicDataWidget(
       user: widget.user,
-      currentSong: currentSong, // Provide a default value for currentSong if it's null
+      currentSong: currentSong,
       createNewPlaylist: _createNewPlaylist,
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -61,18 +59,13 @@ class _ApiPageState extends State<ApiPage> {
         ),
 
         body: Column(
-
           children: [
-            // SizedBox(width: 30),
-
-
             Expanded(
               child: customListCard(),
             ),
             if (currentSong != null) _buildBottomBar(),
           ],
         ),
-
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -115,7 +108,6 @@ class _ApiPageState extends State<ApiPage> {
   }
 
   Future<void> fetchMusicData() async {
-    print('Fetching music data...');
     final musiclist = await ApiService().getAllFetchMusicData();
     setState(() {
       musicList = musiclist;
@@ -123,11 +115,6 @@ class _ApiPageState extends State<ApiPage> {
   }
 
   Widget customListCard() {
-
-    print('Building customListCard... Music list length: ${musicList.length}');
-    // Your existing code for building the list view
-
-
     return Builder(
       builder: (BuildContext context) {
         return ListView.builder(
@@ -136,7 +123,6 @@ class _ApiPageState extends State<ApiPage> {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
-                print('Song tapped: ${musicList[index].title}');
                 setState(() {
                   currentSong = musicList[index];
                 });
@@ -152,7 +138,6 @@ class _ApiPageState extends State<ApiPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Padding(
-
                       padding: const EdgeInsets.only(left: 6, bottom: 8, right: 8, top: 10),
                       child: SizedBox(
                         child: FadeInImage.assetNetwork(
@@ -170,20 +155,19 @@ class _ApiPageState extends State<ApiPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded( // Wrap Text widget with Expanded
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,                          children: [
+                            Expanded(
                               child: Text(
                                 musicList[index].title.toString(),
                                 style: TextStyle(color: Colors.white, fontSize: 18),
-                                overflow: TextOverflow.ellipsis, // Set overflow property to ellipsis
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             PopupMenuButton(
                               itemBuilder: (BuildContext context) => [
                                 PopupMenuItem(
                                   child: Text("Add to Playlist"),
-                                  value: musicList[index], // Pass the current song object as the value
+                                  value: musicList[index],
                                 ),
                               ],
                               onSelected: (value) {
@@ -220,12 +204,9 @@ class _ApiPageState extends State<ApiPage> {
         );
       },
     );
-
-
   }
 
   Widget _buildBottomBar() {
-    print('Building bottom bar...');
     return Container(
       color: Colors.black,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -253,29 +234,24 @@ class _ApiPageState extends State<ApiPage> {
   }
 
   void _createNewPlaylist(String playlistName) async {
-    print('Creating new playlist...');
     try {
       CollectionReference playlistsCollection =
       FirebaseFirestore.instance.collection('playlists');
 
-      // Check if the playlist document already exists
       DocumentSnapshot playlistDoc =
       await playlistsCollection.doc(widget.user.uid).get();
 
       if (!playlistDoc.exists) {
-        // Create a new document for the user if it doesn't exist
         await playlistsCollection.doc(widget.user.uid).set({});
       }
 
-      // Add the current song to the playlist
       await playlistsCollection
           .doc(widget.user.uid)
           .collection(playlistName)
           .doc(DateTime.now().toString())
           .set({
-        'songName': currentSong.title.toString(), // Use currentSong?.title with null check
-        'artist': currentSong.artist, // Use currentSong?.artist with null check
-        // Add other song details as needed
+        'songName': currentSong.title.toString(),
+        'artist': currentSong.artist,
       });
 
       ScaffoldMessenger.of(context).showSnackBar(

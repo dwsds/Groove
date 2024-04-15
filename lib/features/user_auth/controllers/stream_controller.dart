@@ -1,6 +1,5 @@
 import 'dart:io';
-import 'dart:async'; // Add this import for async/await support
-import 'package:flutter/widgets.dart'; // Add this import for Key and StatefulWidget
+import 'dart:async';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:get/get.dart';
 import 'package:debug_it/features/user_auth/models/stream.dart';
@@ -44,7 +43,6 @@ class StreamController extends GetxController {
     List<FileSystemEntity> songs = [];
 
     if (await _requestPermission(Permission.storage)) {
-      // Update the directory path to point to the 'Download' directory on your device
       Directory directory = Directory('/storage/emulated/0/Download/');
       if (await directory.exists()) {
         List<FileSystemEntity> files =
@@ -64,13 +62,8 @@ class StreamController extends GetxController {
             );
           }
         }
-      } else {
-        print('Download directory not found.');
       }
-    } else {
-      print('Storage permission denied.');
     }
-
     streams.value = serverResponse;
   }
 }

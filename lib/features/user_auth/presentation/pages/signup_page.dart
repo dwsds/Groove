@@ -1,13 +1,8 @@
-import 'package:debug_it/features/user_auth/presentation/pages/api_music.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../../firebase_auth_implementation/firebase_auth_services.dart';
 import 'login_page.dart';
-// import 'google_fonts';
-// import 'package:google_fonts/google_fonts.dart';
-
 import 'package:debug_it/features/user_auth/presentation/widgets/form_container_widget.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -22,7 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  String _errorMessage = ''; // Added to store error message
+  String _errorMessage = '';
 
   @override
   void dispose() {
@@ -53,7 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   color: Colors.orangeAccent,
                   size: 20,
                 ),
-                SizedBox(width: 10), // Add some space between the icon and text
+                SizedBox(width: 10),
                 Text(
                   "Sign Up",
                   style: TextStyle(
@@ -64,31 +59,27 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ],
             ),
-
-
-
-
             SizedBox(height: 15),
             Container(
-              height: 50, // Decrease the height of the container to make the text fields smaller
+              height: 50,
               child: FormContainerWidget(
                 controller: _usernameController,
                 hintText: "Username",
                 isPasswordField: false,
               ),
             ),
-            SizedBox(height: 15), // Add some spacing between text fields
+            SizedBox(height: 15),
             Container(
-              height: 50, // Decrease the height of the container to make the text fields smaller
+              height: 50,
               child: FormContainerWidget(
                 controller: _emailController,
                 hintText: "Email",
                 isPasswordField: false,
               ),
             ),
-            SizedBox(height: 15), // Add some spacing between text fields
+            SizedBox(height: 15),
             Container(
-              height: 50, // Decrease the height of the container to make the text fields smaller
+              height: 50,
               child: FormContainerWidget(
                 controller: _passwordController,
                 hintText: "Password",
@@ -101,7 +92,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: GestureDetector(
                 onTap: _signUp,
                 child: Container(
-                  width: 150, // Set the desired width
+                  width: 150,
                   height: 50,
                   decoration: BoxDecoration(
                     color: Colors.black,
@@ -111,13 +102,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Text(
                       "Sign Up",
                       style: TextStyle(color: Colors.white, fontFamily: 'subheading',fontSize: 20),
-
                     ),
                   ),
                 ),
               ),
             ),
-
             SizedBox(height: 10,),
             // Display error message if it's not empty
             if (_errorMessage.isNotEmpty)
@@ -125,7 +114,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 _errorMessage,
                 style: TextStyle(color: Colors.orangeAccent,fontFamily: 'text' ),
               ),
-
             SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -165,8 +153,6 @@ class _SignUpPageState extends State<SignUpPage> {
           _errorMessage = "User creation failed. Please try again.";
         });
       } else {
-        print("User created successfully");
-        // Navigate to the ApiPage with userID parameter
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -176,26 +162,21 @@ class _SignUpPageState extends State<SignUpPage> {
       }
     } catch (error) {
       setState(() {
-        // Display specific error messages to the user
         if (error is FirebaseAuthException) {
           _errorMessage = _mapFirebaseErrorToMessage(error.code);
         } else {
           _errorMessage = "An error occurred: $error";
         }
       });
-      print("An error occurred: $error");
     }
   }
 
-
-  // Map Firebase error codes to user-friendly messages
   String _mapFirebaseErrorToMessage(String errorCode) {
     switch (errorCode) {
       case "email-already-in-use":
         return "Email is already in use. Please use a different email.";
       case "weak-password":
         return "Password is too weak. Please use a stronger password.";
-    // Add more cases for other Firebase error codes as needed
       default:
         return "An error occurred: $errorCode";
     }
