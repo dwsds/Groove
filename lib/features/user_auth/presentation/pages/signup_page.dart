@@ -108,7 +108,6 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             SizedBox(height: 10,),
-            // Display error message if it's not empty
             if (_errorMessage.isNotEmpty)
               Text(
                 _errorMessage,

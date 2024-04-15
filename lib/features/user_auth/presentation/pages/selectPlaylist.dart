@@ -90,7 +90,6 @@ class CreateNewPlaylistPage extends StatelessWidget {
                       onTap: () {
                         _addSongToPlaylist(context, playlistIDs[index], currentSong);
                       },
-
                     );
                   },
                 );
@@ -99,7 +98,6 @@ class CreateNewPlaylistPage extends StatelessWidget {
           ),
         ],
       ),
-
     );
   }
 
@@ -107,35 +105,23 @@ class CreateNewPlaylistPage extends StatelessWidget {
     try {
       CollectionReference userPlaylistsCollection = FirebaseFirestore.instance.collection(userID);
 
-      // Check if the user collection exists, and create it if not
       String playlistID = userPlaylistsCollection.doc().id;
       DocumentSnapshot userDoc = await userPlaylistsCollection.doc(userID).get();
       if (!userDoc.exists) {
-        print('User collection does not exist. Creating new collection...');
         await userPlaylistsCollection.doc(playlistID).set(<String, dynamic>{
-          // Add initial data if needed
         });
-        print('User collection created successfully.');
       }
 
-      // Generate a unique ID for the playlist
-
-
-      // Create a document with the unique ID
       await userPlaylistsCollection.doc(playlistID).set({
         'PlaylistName': name,
-        'createdAt': FieldValue.serverTimestamp(), // Add creation timestamp
+        'createdAt': FieldValue.serverTimestamp(),
       });
 
-      // Add the current song to the 'songs' collection inside the playlist document
       await userPlaylistsCollection.doc(playlistID).collection('songs').add({
         'songTitle': currentSong.title.toString(),
-
         'id': currentSong.id,
-
-        'createdAt': FieldValue.serverTimestamp(), // Add creation timestamp for the song
+        'createdAt': FieldValue.serverTimestamp(),
       });
-
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -154,30 +140,23 @@ class CreateNewPlaylistPage extends StatelessWidget {
   void _addSongToPlaylist(BuildContext context, String playlistID, MusicDataResponse currentSong) async {
     try {
       CollectionReference userPlaylistsCollection = FirebaseFirestore.instance.collection(userID);
-
-      // Check if the song already exists in the playlist
       QuerySnapshot songQuery = await userPlaylistsCollection.doc(playlistID)
           .collection('songs')
           .where('songTitle', isEqualTo: currentSong.title.toString())
           .get();
 
       if (songQuery.docs.isNotEmpty) {
-        // Song already exists in the playlist, show a message
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Song already exists in the playlist!'),
           ),
         );
       } else {
-        // Add the current song to the 'songs' collection inside the playlist document
         await userPlaylistsCollection.doc(playlistID).collection('songs').add({
           'songTitle': currentSong.title.toString(),
-
           'id': currentSong.id,
-
-          'createdAt': FieldValue.serverTimestamp(), // Add creation timestamp for the song
+          'createdAt': FieldValue.serverTimestamp(),
         });
-
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Song added to playlist successfully!'),
@@ -193,12 +172,4 @@ class CreateNewPlaylistPage extends StatelessWidget {
       );
     }
   }
-
-
-
-
-
-
-
-
 }

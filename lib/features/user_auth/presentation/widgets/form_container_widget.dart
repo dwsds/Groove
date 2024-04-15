@@ -11,7 +11,7 @@ class FormContainerWidget extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onFieldSubmitted;
   final TextInputType? inputType;
-  final TextStyle? textStyle; // Add textStyle parameter
+  final TextStyle? textStyle;
 
   const FormContainerWidget({
     this.controller,
@@ -24,7 +24,7 @@ class FormContainerWidget extends StatefulWidget {
     this.validator,
     this.onFieldSubmitted,
     this.inputType,
-    this.textStyle, // Initialize textStyle parameter
+    this.textStyle,
   });
 
   @override
@@ -44,7 +44,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
-        style: widget.textStyle ?? TextStyle(color: Colors.white), // Changed text color to white if textStyle is not provided
+        style: widget.textStyle ?? TextStyle(color: Colors.white),
         controller: widget.controller,
         keyboardType: widget.inputType,
         key: widget.fieldKey,
@@ -59,7 +59,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
           ),
           filled: false,
           hintText: widget.hintText,
-          hintStyle: TextStyle(color: Colors.grey.shade500.withOpacity(0.5)), // Faded hint text color
+          hintStyle: TextStyle(color: Colors.grey.shade500.withOpacity(0.5)),
           suffixIcon: GestureDetector(
             onTap: () {
               setState(() {
@@ -69,7 +69,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
             child: widget.isPasswordField == true
                 ? Icon(
               _obscureText ? Icons.visibility_off : Icons.visibility,
-              color: _obscureText ? Colors.grey.shade100 : Colors.white, // Improved contrast for visibility icon
+              color: _obscureText ? Colors.grey.shade100 : Colors.white,
             )
                 : Text(""),
           ),

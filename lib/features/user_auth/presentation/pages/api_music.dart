@@ -155,7 +155,8 @@ class _ApiPageState extends State<ApiPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,                          children: [
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Expanded(
                               child: Text(
                                 musicList[index].title.toString(),
@@ -220,7 +221,7 @@ class _ApiPageState extends State<ApiPage> {
           IconButton(
             onPressed: () {
               setState(() {
-                isPlaying = !isPlaying; // Toggle play/pause state
+                isPlaying = !isPlaying;
               });
             },
             icon: Icon(

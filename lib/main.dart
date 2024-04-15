@@ -25,23 +25,21 @@ Future main() async {
 class MyApp extends StatelessWidget {
   static final navigatorKey = GlobalKey<NavigatorState>();
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      navigatorKey: navigatorKey, // Assigning the navigatorKey to the MaterialApp
-      initialRoute: '/', // Initial route is SignUpPage
+      navigatorKey: navigatorKey,
+      initialRoute: '/',
       routes: {
         '/login': (context) => LoginPage(),
         '/local': (context) => LocalMusic(),
-        // '/home': (context) => HomePage(),
         '/api_music': (context) => ApiPage(user: ModalRoute.of(context)!.settings.arguments as User),
         '/library': (context) => YourLibrary(user: ModalRoute.of(context)!.settings.arguments as User),
         '/delete': (context) => DeleteAccount(),
         '/signup': (context) => SignUpPage(),
-        '/': (context) => WelcomeScreen(), // Default route is SignUpPage
+        '/': (context) => WelcomeScreen(),
       },
     );
   }
