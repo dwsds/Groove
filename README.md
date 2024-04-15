@@ -3,6 +3,8 @@
 ## Overview
 This Flutter-based music app allows users to access a wide range of songs from an API, play songs locally stored on their devices, create playlists, and add songs to their playlists.
 
+Demonstration of the working of the app: https://drive.google.com/file/d/1PGJIwPbIgNi7DrM-8FKKz4hxXFKYNre0/view?usp=sharing
+
 ## Features
 - **Fetch Songs from API:** The app fetches songs from a remote API, providing users with a diverse collection of music to explore.
 - **Local Song Playback:** Users can play songs that are locally available on their devices, providing flexibility and offline access to their favorite tracks.
