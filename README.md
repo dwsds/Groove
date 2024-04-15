@@ -1,4 +1,4 @@
-# Groove
+# Groove - A Music App
 
 ## Overview
 This Flutter-based music app allows users to access a wide range of songs from an API, play songs locally stored on their devices, create playlists, and add songs to their playlists.
