@@ -12,9 +12,10 @@ class YourLibrary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade900,
       body: Column(
         children: [
-          SizedBox(height: 20), // Add spacing between the button and text
+          SizedBox(height: 50), // Add spacing between the button and text
 
           SizedBox(height: 10),
           Container(
@@ -36,9 +37,10 @@ class YourLibrary extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 30),
           Text(
             'Your Playlists',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.white),
           ),// Add spacing before the playlist content
           Expanded(
             child: FutureBuilder<QuerySnapshot>(
@@ -73,7 +75,7 @@ class YourLibrary extends StatelessWidget {
                     return ListTile(
                       title: Text(
                         playlistNames[index],
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.grey.shade200),
                       ),
                       onTap: () {
                         Navigator.push(

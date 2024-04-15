@@ -17,8 +17,10 @@ class PlaylistDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
-        title: Text('Playlist Details'),
+        backgroundColor: Colors.black,
+        title: Text('Playlist Songs',style: TextStyle(color: Colors.deepPurple.shade300),),
       ),
       body: FutureBuilder<QuerySnapshot>(
         future: FirebaseFirestore.instance
@@ -51,14 +53,14 @@ class PlaylistDetailsPage extends StatelessWidget {
               songIds.add(data['id']);
             }
           });
-
+  SizedBox(height: 20,);
           return ListView.builder(
             itemCount: songNames.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 title: Text(
                   songNames[index],
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
                 onTap: () async {
                   if (index >= 0 && index < songIds.length) {

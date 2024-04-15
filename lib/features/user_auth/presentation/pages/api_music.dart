@@ -46,6 +46,7 @@ class _ApiPageState extends State<ApiPage> {
       currentSong: currentSong, // Provide a default value for currentSong if it's null
       createNewPlaylist: _createNewPlaylist,
       child: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Colors.black,
           toolbarHeight:50,
@@ -174,7 +175,7 @@ class _ApiPageState extends State<ApiPage> {
                             Expanded( // Wrap Text widget with Expanded
                               child: Text(
                                 musicList[index].title.toString(),
-                                style: TextStyle(color: Colors.black, fontSize: 18),
+                                style: TextStyle(color: Colors.white, fontSize: 18),
                                 overflow: TextOverflow.ellipsis, // Set overflow property to ellipsis
                               ),
                             ),
@@ -206,7 +207,7 @@ class _ApiPageState extends State<ApiPage> {
                         ),
                         Text(
                           musicList[index].artist.toString(),
-                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                          style: TextStyle(color: Colors.deepPurple.shade200, fontSize: 12),
                         ),
                       ],
                     ),

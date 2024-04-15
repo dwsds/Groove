@@ -27,11 +27,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade600,
       // appBar: AppBar(
       //   title: Text('Home'),
       // ),
       body: _tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey.shade900,
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {
@@ -40,11 +42,12 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
+            icon: Icon(Icons.explore, color: Colors.deepPurple,),
             label: 'Explore',
+
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_books),
+            icon: Icon(Icons.library_books,color: Colors.deepPurple),
             label: 'Your Libraries',
           ),
         ],
