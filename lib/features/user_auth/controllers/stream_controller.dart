@@ -14,7 +14,7 @@ class StreamController extends GetxController {
     super.onInit();
     fetchStreams();
   }
-
+  
   Future<bool> _requestPermission(Permission permission) async {
     AndroidDeviceInfo build = await DeviceInfoPlugin().androidInfo;
     if (build.version.sdkInt >= 30) {
@@ -58,7 +58,6 @@ class StreamController extends GetxController {
                 title: metadata.trackName,
                 long: metadata.trackDuration.toString(),
               ),
-
             );
           }
         }
