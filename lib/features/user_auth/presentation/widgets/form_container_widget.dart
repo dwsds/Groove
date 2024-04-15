@@ -11,6 +11,7 @@ class FormContainerWidget extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onFieldSubmitted;
   final TextInputType? inputType;
+  final TextStyle? textStyle; // Add textStyle parameter
 
   const FormContainerWidget({
     this.controller,
@@ -23,6 +24,7 @@ class FormContainerWidget extends StatefulWidget {
     this.validator,
     this.onFieldSubmitted,
     this.inputType,
+    this.textStyle, // Initialize textStyle parameter
   });
 
   @override
@@ -42,7 +44,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
-        style: TextStyle(color: Colors.black), // Text color changed to white
+        style: widget.textStyle ?? TextStyle(color: Colors.white), // Changed text color to white if textStyle is not provided
         controller: widget.controller,
         keyboardType: widget.inputType,
         key: widget.fieldKey,
@@ -51,13 +53,13 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
         validator: widget.validator,
         onFieldSubmitted: widget.onFieldSubmitted,
         decoration: InputDecoration(
-          border: OutlineInputBorder( // White outline
+          border: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
             borderRadius: BorderRadius.circular(10),
           ),
           filled: false,
           hintText: widget.hintText,
-          hintStyle: TextStyle(color: Colors.grey.shade500), // Hint text color changed to white
+          hintStyle: TextStyle(color: Colors.grey.shade500.withOpacity(0.5)), // Faded hint text color
           suffixIcon: GestureDetector(
             onTap: () {
               setState(() {
@@ -67,7 +69,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
             child: widget.isPasswordField == true
                 ? Icon(
               _obscureText ? Icons.visibility_off : Icons.visibility,
-              color: _obscureText == false ? Colors.white : Colors.grey.shade100,
+              color: _obscureText ? Colors.grey.shade100 : Colors.white, // Improved contrast for visibility icon
             )
                 : Text(""),
           ),

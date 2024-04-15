@@ -34,25 +34,54 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.black,
         toolbarHeight: 30,
       ),
-      backgroundColor: Colors.grey.shade600,
+      backgroundColor: Colors.grey.shade900,
 
       body:Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Login", style: TextStyle(fontSize: 50),),
-            FormContainerWidget(
-              controller: _emailController,
-              hintText: "Email",
-              isPasswordField: false,
+            Row(
+              children: [
+                Icon(
+                  Icons.music_note,
+                  color: Colors.orangeAccent,
+                  size: 20,
+                ),
+                SizedBox(width: 10), // Add some space between the icon and text
+                Text(
+                  "Log In ",
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.grey.shade200,
+                    fontFamily: 'heading',
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 10,),
-            FormContainerWidget(
-              controller: _passwordController,
-              hintText: "Password",
-              isPasswordField: true,
+            Container(
+              height: 50, // Decrease the height of the container to make the text fields smaller
+              child: FormContainerWidget(
+                controller: _emailController,
+                hintText: "Email",
+                isPasswordField: false,
+                textStyle: TextStyle(color: Colors.white, fontFamily: 'text'), // Add textStyle for the email field
+              ),
             ),
+
+            SizedBox(height: 15), // Add some spacing between text fields
+
+            Container(
+              height: 50, // Decrease the height of the container to make the text fields smaller
+              child: FormContainerWidget(
+                controller: _passwordController,
+                hintText: "Password",
+                isPasswordField: true,
+                textStyle: TextStyle(color: Colors.white, fontFamily: 'text'), // Add textStyle for the password field
+              ),
+            ),
+
             SizedBox(height: 20,),
             Center(
               child: GestureDetector(
@@ -68,31 +97,31 @@ class _LoginPageState extends State<LoginPage> {
                   child: Center(
                     child: Text(
                       "Login",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontFamily: 'subheading', fontSize: 20),
                     ),
                   ),
                 ),
               ),
             ),
             SizedBox(height: 20,),
-            SizedBox(height: 20),
+
 
             // Display error message if it's not empty
             if (_errorMessage.isNotEmpty)
               Text(
                 _errorMessage,
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.orangeAccent,fontFamily: 'text' ),
               ),
-
+            SizedBox(height: 10,),
             Row(mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Dont have an account?"),
+                Text("Dont have an account?", style: TextStyle(fontSize: 15,color: Colors.grey.shade300,fontFamily: 'text'),),
                 SizedBox(width: 5,),
                 GestureDetector(
                   onTap: (){
                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>SignUpPage()), (route) => false);
                   },
-                  child: Text("Sign Up",style: TextStyle(color: Colors.red),),
+                  child: Text("Sign Up",style: TextStyle(fontSize: 15,color: Color(0xFFA27FEA),fontFamily: 'text'),),
                 )
               ],)
           ],

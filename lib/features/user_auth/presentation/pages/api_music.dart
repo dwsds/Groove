@@ -47,37 +47,23 @@ class _ApiPageState extends State<ApiPage> {
       createNewPlaylist: _createNewPlaylist,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Music App"),
+          backgroundColor: Colors.black,
+          toolbarHeight:50,
           leading: Builder(
             builder: (context) => IconButton(
-              icon: Icon(Icons.menu),
+              icon: Icon(Icons.menu),color: Colors.white,
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
             ),
           ),
         ),
+
         body: Column(
+
           children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.symmetric(horizontal: 31, vertical: 6),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, "/local");
-                },
-                child: Row(
-                  children: [
-                    Icon(Icons.folder, color: Colors.blue), // Folder icon
-                    SizedBox(width: 8), // Spacer between icon and text
-                    Text(
-                      "Local Music",
-                      style: TextStyle(color: Colors.blue, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // SizedBox(width: 30),
+
 
             Expanded(
               child: customListCard(),
@@ -144,6 +130,7 @@ class _ApiPageState extends State<ApiPage> {
     return Builder(
       builder: (BuildContext context) {
         return ListView.builder(
+
           padding: EdgeInsets.zero,
           itemBuilder: (context, index) {
             return InkWell(
@@ -164,7 +151,8 @@ class _ApiPageState extends State<ApiPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 8, bottom: 8, right: 8, top: 4),
+
+                      padding: const EdgeInsets.only(left: 6, bottom: 8, right: 8, top: 10),
                       child: SizedBox(
                         child: FadeInImage.assetNetwork(
                           height: 60,

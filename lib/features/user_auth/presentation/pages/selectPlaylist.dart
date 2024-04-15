@@ -187,16 +187,9 @@ class CreateNewPlaylistPage extends StatelessWidget {
         // Add the current song to the 'songs' collection inside the playlist document
         await userPlaylistsCollection.doc(playlistID).collection('songs').add({
           'songTitle': currentSong.title.toString(),
-          'artist': currentSong.artist,
+
           'id': currentSong.id,
-          'album': currentSong.album,
-          'genre': currentSong.genre,
-          'source': currentSong.source,
-          'image': currentSong.image,
-          'trackNumber': currentSong.trackNumber,
-          'totalTrackCount': currentSong.totalTrackCount,
-          'duration': currentSong.duration,
-          'site': currentSong.site,
+
           'createdAt': FieldValue.serverTimestamp(), // Add creation timestamp for the song
         });
 

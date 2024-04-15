@@ -2,8 +2,12 @@ import 'package:debug_it/features/user_auth/presentation/pages/api_music.dart';
 import 'package:debug_it/features/user_auth/presentation/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import '../../firebase_auth_implementation/firebase_auth_services.dart';
 import 'login_page.dart';
+// import 'google_fonts';
+// import 'package:google_fonts/google_fonts.dart';
+
 import 'package:debug_it/features/user_auth/presentation/widgets/form_container_widget.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -42,12 +46,28 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Sign Up",
-              style: TextStyle(fontSize: 30, color: Colors.grey.shade200,),
-
-
+            Row(
+              children: [
+                Icon(
+                  Icons.music_note,
+                  color: Colors.orangeAccent,
+                  size: 20,
+                ),
+                SizedBox(width: 10), // Add some space between the icon and text
+                Text(
+                  "Sign Up",
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.grey.shade200,
+                    fontFamily: 'heading',
+                  ),
+                ),
+              ],
             ),
+
+
+
+
             SizedBox(height: 15),
             Container(
               height: 50, // Decrease the height of the container to make the text fields smaller
@@ -90,19 +110,20 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Center(
                     child: Text(
                       "Sign Up",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontFamily: 'subheading',fontSize: 20),
+
                     ),
                   ),
                 ),
               ),
             ),
 
-            SizedBox(height: 20,),
+            SizedBox(height: 10,),
             // Display error message if it's not empty
             if (_errorMessage.isNotEmpty)
               Text(
                 _errorMessage,
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.orangeAccent,fontFamily: 'text' ),
               ),
 
             SizedBox(height: 10,),
@@ -111,7 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 Text(
                   "Already have an account?",
-                  style: TextStyle(fontSize: 15,color: Color(0xFF58AFE5)),
+                  style: TextStyle(fontSize: 15,color: Colors.grey.shade300,fontFamily: 'text'),
                 ),
                 SizedBox(width: 5,),
                 GestureDetector(
@@ -120,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                   child: Text(
                     "Login",
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: Color(0xFFA27FEA),fontFamily: 'text',fontSize: 17),
                   ),
                 )
               ],

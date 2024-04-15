@@ -15,11 +15,31 @@ class YourLibrary extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: 20), // Add spacing between the button and text
+
+          SizedBox(height: 10),
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.symmetric(horizontal: 31, vertical: 6),
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, "/local");
+              },
+              child: Row(
+                children: [
+                  Icon(Icons.folder, color: Colors.blue), // Folder icon
+                  SizedBox(width: 8), // Spacer between icon and text
+                  Text(
+                    "Your Local Music",
+                    style: TextStyle(color: Colors.blue, fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+          ),
           Text(
             'Your Playlists',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10), // Add spacing before the playlist content
+          ),// Add spacing before the playlist content
           Expanded(
             child: FutureBuilder<QuerySnapshot>(
 
