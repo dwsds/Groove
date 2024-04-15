@@ -1,4 +1,4 @@
-# Music App
+# Groove
 
 ## Overview
 This Flutter-based music app allows users to access a wide range of songs from an API, play songs locally stored on their devices, create playlists, and add songs to their playlists.
@@ -31,7 +31,5 @@ Navigate to the playlist section to create a new playlist. Give it a name and ad
 ### Adding Songs to Playlists
 In the music library, select a song and add it to one of your playlists.
 
-## Feedback and Support
-For any feedback, suggestions, or issues, please contact [your contact information].
 
-Enjoy your music experience with the Music App!
+Enjoy your music experience with Groove!
