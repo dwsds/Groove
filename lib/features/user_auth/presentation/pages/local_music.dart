@@ -95,8 +95,7 @@ class LocalMusic extends StatelessWidget {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                playerController
-                                                    .streams[index].title!,
+                                                playerController.streams[index].musicPath!.split('/').last,
                                                 style: TextStyle(
                                                   fontSize: 14,
                                                   overflow: TextOverflow.ellipsis,
