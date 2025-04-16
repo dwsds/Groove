@@ -35,3 +35,4 @@ In the music library, select a song and add it to one of your playlists.
 Enjoy your music experience with Groove!
 
 changes are here
+changes are here too
